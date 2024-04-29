@@ -15,20 +15,26 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        initDataDropDown();
+        StartCoroutine(initDataDropDown());
     }
 
-    public void initDataDropDown()
+    public IEnumerator initDataDropDown()
     {
-        if (dropdown == null) return;
-        dropdown.ClearOptions();
+        yield return new WaitForSeconds(1f);
+        bool start = true;
+        if (dropdown == null) start = false;
 
-        var options = new List<TMP_Dropdown.OptionData>();
-        for (int i = 0; i < ASM_MN.Instance.listRegion.Count; i++)
+        if (start)
         {
-            options.Add(new TMP_Dropdown.OptionData(ASM_MN.Instance.listRegion[i].Name));
+            dropdown.ClearOptions();
+
+            var options = new List<TMP_Dropdown.OptionData>();
+            for (int i = 0; i < ASM_MN.Instance.listRegion.Count; i++)
+            {
+                options.Add(new TMP_Dropdown.OptionData(ASM_MN.Instance.listRegion[i].Name));
+            }
+            dropdown.AddOptions(options);
         }
-        dropdown.AddOptions(options);
     }
 
     public void login()

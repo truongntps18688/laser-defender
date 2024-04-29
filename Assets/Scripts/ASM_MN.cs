@@ -10,7 +10,7 @@ public class ASM_MN : Singleton<ASM_MN>
     public List<Region> listRegion = new List<Region>();
     public List<Players> listPlayer = new List<Players>();
 
-    private void Awake()
+    private void Start()
     {
         createRegion();
     }

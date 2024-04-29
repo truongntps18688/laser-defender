@@ -5,48 +5,23 @@ using System.Linq;
 using System.IO;
 using System.Threading;
 
-public class ASM_MN : MonoBehaviour
+public class ASM_MN : Singleton<ASM_MN>
 {
-    static ASM_MN instance;
-
-
     public List<Region> listRegion = new List<Region>();
     public List<Players> listPlayer = new List<Players>();
 
     private void Awake()
     {
-        ManageSingleton();
         createRegion();
     }
 
     public void createRegion()
     {
-
         listRegion.Add(new Region(0, "VN"));
         listRegion.Add(new Region(1, "VN1"));
         listRegion.Add(new Region(2, "VN2"));
         listRegion.Add(new Region(3, "JS"));
         listRegion.Add(new Region(4, "VS"));
-
-
-        listPlayer.Add(new Players(0, "test1", 0, listRegion[0]));
-        listPlayer.Add(new Players(1, "test2", 300, listRegion[0]));
-        listPlayer.Add(new Players(2, "test3", 1500, listRegion[0]));
-        listPlayer.Add(new Players(3, "test4", 7000, listRegion[1]));
-    }
-
-    void ManageSingleton()
-    {
-        if (instance != null)
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
     }
 
     public string calculate_rank(int score)
@@ -61,8 +36,12 @@ public class ASM_MN : MonoBehaviour
             return "kim cương";
     }
 
-    public void YC1(int ID, string name, int score, int IDregion)
+    public void YC1()
     {
+        int ID = ScoreKeeper.Instance.GetID();
+        string name = ScoreKeeper.Instance.GetUserName();
+        int score = ScoreKeeper.Instance.GetScore();
+        int IDregion = ScoreKeeper.Instance.GetIDregion();
         Players newPlayer = new Players(ID, name, score, listRegion[IDregion]);
         listPlayer.Add(newPlayer);
     }
@@ -78,12 +57,12 @@ public class ASM_MN : MonoBehaviour
             Debug.Log("rank: " + calculate_rank(item.score));
         }
     }
-    public void YC3(int score)
+    public void YC3()
     {
         for (int i = 0; i < listPlayer.Count; i++)
         {
             Players item = listPlayer[i];
-            if (item.score < score)
+            if (item.score < ScoreKeeper.Instance.GetScore())
                 continue;
             Debug.Log("ID: " + item.ID);
             Debug.Log("name: " + item.name);
@@ -92,19 +71,19 @@ public class ASM_MN : MonoBehaviour
             Debug.Log("rank: " + calculate_rank(item.score));
         }
     }
-    public void YC4(int ID)
+    public void YC4()
     {
-        Players foundPlayer = listPlayer.FirstOrDefault(player => player.ID == ID);
+        Players foundPlayer = listPlayer.FirstOrDefault(player => player.ID == ScoreKeeper.Instance.GetID());
 
         if (foundPlayer != null)
         {
-            Debug.Log($"Tìm thấy người chơi với ID {ID}: {foundPlayer.name}");
+            Debug.Log($"Tìm thấy người chơi với ID {ScoreKeeper.Instance.GetID()}: {foundPlayer.name}");
             foundPlayer.name = "?????????";
             YC2(); // test
         }
         else
         {
-            Debug.Log($"Không tìm thấy người chơi với ID {ID}");
+            Debug.Log($"Không tìm thấy người chơi với ID {ScoreKeeper.Instance.GetID()}");
         }
     }
     public void YC5()

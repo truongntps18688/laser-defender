@@ -5,37 +5,30 @@ using System.Linq;
 using System.Threading;
 using System.IO;
 
-public class ScoreKeeper : MonoBehaviour
+public class ScoreKeeper : Singleton<ScoreKeeper>
 {
     public int ID;
     public int score;
     public string userName;
     public int IDregion;
 
-    static ScoreKeeper instance;
 
-    void Awake()
+    public int GetID()
     {
-        ManageSingleton();
+        return ID;
     }
-
-    void ManageSingleton()
+    public string GetUserName()
     {
-        if(instance != null)
-        {
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        return userName;
     }
 
     public int GetScore()
     {
         return score;
+    }
+    public int GetIDregion()
+    {
+        return IDregion;
     }
 
     public void ModifyScore(int value)

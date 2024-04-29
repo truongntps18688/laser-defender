@@ -8,8 +8,6 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] float sceneLoadDelay = 2f;
-    ScoreKeeper scoreKeeper;
-    ASM_MN ASM_MN;
 
     [SerializeField] GameObject panelLogin;
     [SerializeField] TMP_InputField userName;
@@ -17,8 +15,6 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        scoreKeeper = FindObjectOfType<ScoreKeeper>();
-        ASM_MN = FindObjectOfType<ASM_MN>();
         initDataDropDown();
     }
 
@@ -28,9 +24,9 @@ public class LevelManager : MonoBehaviour
         dropdown.ClearOptions();
 
         var options = new List<TMP_Dropdown.OptionData>();
-        for (int i = 0; i < ASM_MN.listRegion.Count; i++)
+        for (int i = 0; i < ASM_MN.Instance.listRegion.Count; i++)
         {
-            options.Add(new TMP_Dropdown.OptionData(ASM_MN.listRegion[i].Name));
+            options.Add(new TMP_Dropdown.OptionData(ASM_MN.Instance.listRegion[i].Name));
         }
         dropdown.AddOptions(options);
     }
@@ -48,7 +44,7 @@ public class LevelManager : MonoBehaviour
     public void LoadGame()
     {
         if (userName.text.Trim().Length == 0) return;
-        scoreKeeper.ResetScore(userName.text, dropdown.value);
+        ScoreKeeper.Instance.ResetScore(userName.text, dropdown.value);
         SceneManager.LoadScene("Game");
     }
 

@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] TMP_InputField userName;
     [SerializeField] TMP_Dropdown dropdown;
 
-    void Awake()
+    private void Start()
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
         ASM_MN = FindObjectOfType<ASM_MN>();

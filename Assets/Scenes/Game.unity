@@ -717,7 +717,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.95
+  m_fontSize: 26.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1201,6 +1201,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5049669442878417116, guid: 9a049a6fa5d79cc41a3c467ade9ba2ca, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5049669442878417116, guid: 9a049a6fa5d79cc41a3c467ade9ba2ca, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5049669443539780344, guid: 9a049a6fa5d79cc41a3c467ade9ba2ca, type: 3}
       propertyPath: m_Name
       value: Background
@@ -1248,6 +1256,14 @@ PrefabInstance:
     - target: {fileID: 5049669443539780345, guid: 9a049a6fa5d79cc41a3c467ade9ba2ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5049669443546962308, guid: 9a049a6fa5d79cc41a3c467ade9ba2ca, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5049669443546962308, guid: 9a049a6fa5d79cc41a3c467ade9ba2ca, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a049a6fa5d79cc41a3c467ade9ba2ca, type: 3}
